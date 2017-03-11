@@ -2,7 +2,6 @@ import Ember from 'ember';
 import { moduleForModel, test } from 'ember-qunit';
 
 moduleForModel('measure', 'Unit | Model | measure', {
-  // Specify the other units that are required for this test.
   needs: ['model:section', 'model:chord']
 });
 

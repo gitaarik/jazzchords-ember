@@ -2,14 +2,13 @@ import Ember from 'ember';
 import { moduleForModel, test } from 'ember-qunit';
 
 moduleForModel('chord', 'Unit | Model | chord', {
-  // Specify the other units that are required for this test.
   needs: ['model:measure']
 });
 
-test('it exists', function(assert) {
-  let model = this.subject();
-  // let store = this.store();
-  assert.ok(!!model);
+test('can create a chord', function(assert) {
+  const chord = this.subject({ name: 'C7' });
+  assert.ok(!!chord);
+  assert.equal(chord.get('name'), 'C7');
 });
 
 test('has a measure', function(assert) {

@@ -2,14 +2,13 @@ import Ember from 'ember';
 import { moduleForModel, test } from 'ember-qunit';
 
 moduleForModel('section', 'Unit | Model | section', {
-  // Specify the other units that are required for this test.
   needs: ['model:chart', 'model:measure']
 });
 
 test('it exists', function(assert) {
-  let model = this.subject();
-  // let store = this.store();
-  assert.ok(!!model);
+  const section = this.subject({ name: "Intro" });
+  assert.ok(!!section);
+  assert.equal(section.get('name'), "Intro");
 });
 
 test('has a chart', function(assert) {
