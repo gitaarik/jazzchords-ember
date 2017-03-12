@@ -1,0 +1,15 @@
+.chart-title {
+    margin-bottom: 25px;
+}
+
+.measure-box {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #000;
+}
+
+.chord-big {
+    line-height: 100px;
+    text-align: center;
+    font-size: 40px;
+}

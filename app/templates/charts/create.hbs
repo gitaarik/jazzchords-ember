@@ -1,25 +1,25 @@
-<article class="create">
+<article class="chart-editor">
 
-    <input class="title" value="New chart">
+    <input class="chart-title" value="New chart">
 
-    <div class="sections">
+    {{#each model.sections as |section|}}
 
-        <div class="section">
+        {{#each section.measures as |measure|}}
 
-            <div class="measures">
+            <div class="measure-box">
 
-                <div class="measure">
+                {{#if (eq measure.beatSchema '4')}}
 
-                    <div class="chords">
-                        <div class="chord">C</div>
-                    </div>
-                    
-                </div>
+                    {{#each measure.chords as |chord|}}
+                        <div class="chord-big">{{ chord.name }}</div>
+                    {{/each}}
+
+                {{/if}}
 
             </div>
 
-        </div>
+        {{/each}}
 
-    </div>
+    {{/each}}
 
 </article>

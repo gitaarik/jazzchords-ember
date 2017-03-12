@@ -15,7 +15,7 @@ test('has default title', function(assert) {
   visit('/charts/create');
 
   andThen(function() {
-    assert.equal(find('.charts .create .title').attr('value'), 'New chart');
+    assert.equal(find('.chart-editor .chart-title').attr('value'), 'New chart');
   });
 });
 
@@ -23,6 +23,6 @@ test('has default chart with one chord', function(assert) {
   visit('/charts/create');
 
   andThen(function() {
-    assert.equal(find('.charts .create .sections .section:first .measures .measure:first .chords .chord:first').text(), 'C');
+    assert.equal(find('.chord-big').text(), 'C');
   });
 });
