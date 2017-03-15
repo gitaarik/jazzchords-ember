@@ -4,21 +4,27 @@
 
     {{#each model.sections as |section|}}
 
-        {{#each section.measures as |measure|}}
+        <div class="chart-section">
 
-            <div class="measure-box">
+            {{#each section.measures as |measure|}}
 
-                {{#if (eq measure.beatSchema '4')}}
+                <div class="measure-box">
 
-                    {{#each measure.chords as |chord|}}
-                        <div class="chord-big">{{ chord.name }}</div>
-                    {{/each}}
+                    {{#if (eq measure.beatSchema '4')}}
 
-                {{/if}}
+                        {{#each measure.chords as |chord|}}
+                            <div class="chord-big">{{ chord.name }}</div>
+                        {{/each}}
 
-            </div>
+                    {{/if}}
 
-        {{/each}}
+                </div>
+
+            {{/each}}
+
+            <div class="measure-add-button">+</div>
+
+        </div>
 
     {{/each}}
 
