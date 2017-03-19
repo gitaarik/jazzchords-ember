@@ -1,0 +1,6 @@
+<article class="chart-editor">
+  {{input type="text" class="chart-title" value=chart.title}}
+  {{#each chart.sections as |section|}}
+    {{chart-editor-section section=section}}
+  {{/each}}
+</article>

@@ -12,11 +12,13 @@ test('visiting /charts/create', function(assert) {
 });
 
 test('has default title', function(assert) {
+
   visit('/charts/create');
 
   andThen(function() {
-    assert.equal(find('.chart-editor .chart-title').attr('value'), 'New chart');
+    assert.equal(find('.chart-editor .chart-title').val(), 'New chart');
   });
+
 });
 
 test('has default chart with one chord', function(assert) {
