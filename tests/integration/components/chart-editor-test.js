@@ -11,11 +11,13 @@ moduleForComponent('chart-editor', 'Integration | Component | chart editor', {
 
     this.chart = this.store.createRecord('chart', { title: 'All of me' });
     const section = this.store.createRecord('section');
+    const line = this.store.createRecord('line');
     const measure = this.store.createRecord('measure', { beatSchema: '4' });
     const chord = this.store.createRecord('chord', { name: 'C' });
 
     this.chart.get('sections').pushObject(section);
-    section.get('measures').pushObject(measure);
+    section.get('lines').pushObject(line);
+    line.get('measures').pushObject(measure);
     measure.get('chords').pushObject(chord);
 
   }

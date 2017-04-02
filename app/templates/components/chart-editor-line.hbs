@@ -1,0 +1,12 @@
+<div class="section-line">
+  {{#each line.measures as |measure|}}
+    <div class="measure-box">
+      {{#if (eq measure.beatSchema '4')}}
+        {{#each measure.chords as |chord|}}
+          <div class="chord-big">{{chord.name}}</div>
+        {{/each}}
+      {{/if}}
+    </div>
+  {{/each}}
+  <a {{action 'addMeasure'}} class="measure-add-button">+</a>
+</div>

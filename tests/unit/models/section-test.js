@@ -2,7 +2,7 @@ import Ember from 'ember';
 import { moduleForModel, test } from 'ember-qunit';
 
 moduleForModel('section', 'Unit | Model | section', {
-  needs: ['model:chart', 'model:measure']
+  needs: ['model:chart', 'model:line']
 });
 
 test('it exists', function(assert) {
@@ -23,14 +23,14 @@ test('has a chart', function(assert) {
 
 });
 
-test('has measures', function(assert) {
+test('has lines', function(assert) {
 
   const relationship = Ember.get(
     this.store().modelFor('section'),
     'relationshipsByName'
-  ).get('measures');
+  ).get('lines');
 
-  assert.equal(relationship.key, 'measures');
+  assert.equal(relationship.key, 'lines');
   assert.equal(relationship.kind, 'hasMany');
 
 });

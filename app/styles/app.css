@@ -6,10 +6,19 @@
     display: flex;
 }
 
+.section-line {
+    display: flex;
+}
+
 .measure-box {
     width: 100px;
     height: 100px;
     border: 1px solid #000;
+    border-left: none;
+}
+
+.measure-box:first-child {
+    border-left: 1px solid #000;
 }
 
 .chord-big {

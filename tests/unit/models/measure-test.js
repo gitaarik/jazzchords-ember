@@ -2,7 +2,7 @@ import Ember from 'ember';
 import { moduleForModel, test } from 'ember-qunit';
 
 moduleForModel('measure', 'Unit | Model | measure', {
-  needs: ['model:section', 'model:chord']
+  needs: ['model:line', 'model:chord']
 });
 
 test('can create a measure', function(assert) {
@@ -25,14 +25,14 @@ test('can create a measure with a different beatSchema', function(assert) {
   assert.equal(measure.get('beatSchema'), '2-2');
 });
 
-test('has a section', function(assert) {
+test('has a line', function(assert) {
 
   const relationship = Ember.get(
     this.store().modelFor('measure'),
     'relationshipsByName'
-  ).get('section');
+  ).get('line');
 
-  assert.equal(relationship.key, 'section');
+  assert.equal(relationship.key, 'line');
   assert.equal(relationship.kind, 'belongsTo');
 
 });
