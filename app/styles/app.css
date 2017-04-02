@@ -3,22 +3,34 @@
 }
 
 .chart-section {
-    display: flex;
 }
 
 .section-line {
     display: flex;
+    margin-bottom: -1px;
+}
+
+.line-add-button {
+    margin-top: 1px;
+    display: block;
+    height: 25px;
+    line-height: 25px;
+    width: 60px;
+    margin-left: 20px;
+    background: #EEE;
+    border: 1px solid #000;
+    border-width: 0 1px 1px 1px;
+    border-radius: 0 0 5px 5px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .measure-box {
     width: 100px;
     height: 100px;
     border: 1px solid #000;
-    border-left: none;
-}
-
-.measure-box:first-child {
-    border-left: 1px solid #000;
+    margin-right: -1px;
 }
 
 .chord-big {
@@ -28,6 +40,7 @@
 }
 
 .measure-add-button {
+    margin-left: 1px;
     height: 60px;
     line-height: 60px;
     width: 25px;

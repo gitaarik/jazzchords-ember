@@ -2,4 +2,5 @@
   {{#each section.lines as |line|}}
     {{chart-editor-line line=line}}
   {{/each}}
+  <a {{action 'addLine'}} class="line-add-button">+</a>
 </div>

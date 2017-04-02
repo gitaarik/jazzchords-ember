@@ -2,7 +2,7 @@ import Ember from 'ember';
 import { moduleForModel, test } from 'ember-qunit';
 
 moduleForModel('line', 'Unit | Model | line', {
-  needs: ['model:chart', 'model:line']
+  needs: ['model:section', 'model:measure']
 });
 
 test('it exists', function(assert) {

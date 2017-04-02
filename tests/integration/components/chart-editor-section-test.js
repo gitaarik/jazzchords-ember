@@ -26,5 +26,11 @@ moduleForComponent('chart-editor-section', 'Integration | Component | chart edit
 
 test('has a section', function(assert) {
   this.render(hbs`{{chart-editor-section section=section}}`);
-  assert(!!this.$('.chart-section'));
+  assert.ok(!!this.$('.chart-section'));
+});
+
+test('can add line', function(assert) {
+  this.render(hbs`{{chart-editor-section section=section}}`);
+  this.$('.line-add-button').click();
+  assert.equal(this.$('.section-line').length, 2);
 });
