@@ -16,7 +16,7 @@ test('has default title', function(assert) {
   visit('/charts/create');
 
   andThen(function() {
-    assert.equal(find('.chart-editor .chart-title').val(), 'New chart');
+    assert.equal($('.chart-editor .chart-title').val(), 'New chart');
   });
 
 });
@@ -25,6 +25,6 @@ test('has default chart with one chord', function(assert) {
   visit('/charts/create');
 
   andThen(function() {
-    assert.equal(find('.chord-big').text(), 'C');
+    assert.equal($('.chord-big .chord-input').val(), 'C');
   });
 });

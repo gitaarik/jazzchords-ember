@@ -24,7 +24,7 @@ moduleForComponent('chart-editor-line', 'Integration | Component | chart editor 
 
 test('has a chord', function(assert) {
   this.render(hbs`{{chart-editor-line line=line}}`);
-  assert.equal(this.$('.chord-big').text().trim(), 'D');
+  assert.equal(this.$('.chord-big .chord-input').val(), 'D');
 });
 
 test('has one measure', function(assert) {
@@ -38,7 +38,7 @@ test('can add measure', function(assert) {
   this.$('.measure-add-button').click();
 
   assert.equal(this.$('.measure-box').length, 2);
-  assert.equal(this.$('.measure-box:nth-child(1) .chord-big').text().trim(), 'D');
-  assert.equal(this.$('.measure-box:nth-child(2) .chord-big').text().trim(), 'D');
+  assert.equal(this.$('.measure-box:nth-child(1) .chord-big .chord-input').val(), 'D');
+  assert.equal(this.$('.measure-box:nth-child(2) .chord-big .chord-input').val(), 'D');
 
 });
