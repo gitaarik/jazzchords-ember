@@ -1,3 +1,7 @@
+.chart-table > thead > th {
+  text-align: left;
+}
+
 .chart-title {
   margin-bottom: 25px;
 }

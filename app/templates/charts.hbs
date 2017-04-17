@@ -1,1 +1,14 @@
-{{ outlet }}
+<h1>Charts</h1>
+
+<table class="chart-table">
+  <thead>
+    <th>Name</th>
+  </thead>
+  <tbody>
+    {{#each model as |chart|}}
+      <tr>
+        <td>{{chart.title}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
