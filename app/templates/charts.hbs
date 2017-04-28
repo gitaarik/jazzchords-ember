@@ -7,7 +7,7 @@
   <tbody>
     {{#each model as |chart|}}
       <tr>
-        <td>{{chart.title}}</td>
+        <td>{{#link-to 'charts/chart' chart}}{{chart.title}}{{/link-to}}</td>
       </tr>
     {{/each}}
   </tbody>
