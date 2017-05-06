@@ -26,8 +26,9 @@ export default function() {
 
   this.namespace = '/api';
 
-  this.get('/charts', function() {
-    return {
+  this.get('/charts', function(schema) {
+    return schema.charts.all();
+    /*return {
       data: [
         {
           type: 'charts',
@@ -44,7 +45,7 @@ export default function() {
           }
         }
       ]
-    };
+    };*/
   });
 
   this.get('/charts/1', function() {
