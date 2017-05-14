@@ -1,8 +1,11 @@
-<h2>{{ section.name }}</h2>
-
 <div class="chart-section">
+
+  {{input type="text" class="section-name-input" value=section.name placeholder="Untitled section"}}
+
   {{#each section.lines as |line|}}
     {{chart-editor-line line=line}}
   {{/each}}
+
   <a {{action 'addLine'}} class="line-add-button">+</a>
+
 </div>

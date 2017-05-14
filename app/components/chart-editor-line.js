@@ -13,7 +13,8 @@ export default Ember.Component.extend({
             .get('chords')
             .get('firstObject')
             .get('name')
-        )
+        ),
+        focusOnInsert: true
       });
       const measure = store.createRecord('measure', { beatSchema: '4' });
       measure.get('chords').pushObject(chord);

@@ -1,6 +1,7 @@
 <article class="chart-editor">
-  {{input type="text" class="chart-title" value=chart.title}}
+  {{input type="text" class="chart-title-input" value=chart.title placeholder="Untitled Chart"}}
   {{#each chart.sections as |section|}}
     {{chart-editor-section section=section}}
   {{/each}}
+  <button class="section-add-button" {{action "addSection"}}>Add section</button>
 </article>

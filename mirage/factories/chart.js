@@ -1,4 +1,4 @@
-import { Factory } from 'ember-cli-mirage';
+import { Factory, trait } from 'ember-cli-mirage';
 
 export default Factory.extend({
 
@@ -6,8 +6,10 @@ export default Factory.extend({
     return `Chart ${i}`;
   },
 
-  afterCreate(chart, server) {
-    server.createList('section', 3, { chart });
-  }
+  withData: trait({
+    afterCreate(chart, server) {
+      server.createList('section', 3, { chart }, 'withData');
+    }
+  })
 
 });

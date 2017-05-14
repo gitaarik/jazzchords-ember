@@ -16,7 +16,7 @@ test('has default title', function(assert) {
   visit('/charts/create');
 
   andThen(function() {
-    assert.equal($('.chart-editor .chart-title').val(), 'New chart');
+    assert.equal($('.chart-editor .chart-title-input').val(), "New chart");
   });
 
 });

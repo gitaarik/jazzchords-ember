@@ -2,11 +2,28 @@
   text-align: left;
 }
 
-.chart-title {
-  margin-bottom: 25px;
+.chart-title-input {
+  padding: 15px 0;
+  font-size: 25px;
+  border: none;
+}
+
+.chart-title-input::placeholder {
+    color: #999;
 }
 
 .chart-section {
+  padding-bottom: 25px;
+}
+
+.section-name-input {
+    padding: 15px 0;
+    font-size: 20px;
+    border: none;
+}
+
+.section-name-input::placeholder {
+    color: #999;
 }
 
 .section-line {
@@ -63,4 +80,7 @@
   text-align: center;
   font-weight: bold;
   cursor: pointer;
+}
+
+.section-add-button {
 }

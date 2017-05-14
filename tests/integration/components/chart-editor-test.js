@@ -9,7 +9,7 @@ moduleForComponent('chart-editor', 'Integration | Component | chart editor', {
 
     this.inject.service('store');
 
-    this.chart = this.store.createRecord('chart', { title: 'All of me' });
+    this.chart = this.store.createRecord('chart', { title: 'All Of Me' });
     const section = this.store.createRecord('section');
     const line = this.store.createRecord('line');
     const measure = this.store.createRecord('measure', { beatSchema: '4' });
@@ -29,7 +29,7 @@ test('contains the title', function(assert) {
   this.set('chart', this.chart);
   this.render(hbs`{{chart-editor chart=chart}}`);
 
-  assert.equal(this.$('.chart-title').val(), 'All of me');
+  assert.equal(this.$('.chart-title-input').val(), 'All Of Me');
 
 });
 
@@ -39,5 +39,15 @@ test('contains correct amount of sections', function(assert) {
   this.render(hbs`{{chart-editor chart=chart}}`);
 
   assert.equal(this.$('.chart-section').length, 1);
+
+});
+
+test('can add section', function(assert) {
+
+  this.set('chart', this.chart);
+  this.render(hbs`{{chart-editor chart=chart}}`);
+  this.$('.section-add-button').click();
+
+  assert.equal(this.$('.chart-section').length, 2);
 
 });

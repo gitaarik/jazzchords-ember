@@ -38,7 +38,7 @@ test('can add measure', function(assert) {
   this.$('.measure-add-button').click();
 
   assert.equal(this.$('.measure-box').length, 2);
-  assert.equal(this.$('.measure-box:nth-child(1) .chord-big .chord-input').val(), 'D');
-  assert.equal(this.$('.measure-box:nth-child(2) .chord-big .chord-input').val(), 'D');
+  assert.equal(this.$('.measure-box:nth(0) .chord-big .chord-input').val(), 'D');
+  assert.equal(this.$('.measure-box:nth(1) .chord-big .chord-input').val(), 'D');
 
 });

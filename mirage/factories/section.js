@@ -1,11 +1,15 @@
-import { Factory, association } from 'ember-cli-mirage';
+import { Factory, trait } from 'ember-cli-mirage';
 
 export default Factory.extend({
 
-  // chart: association(),
-
   name(i) {
     return `Section ${i}`;
-  }
+  },
+
+  withData: trait({
+    afterCreate(section, server) {
+      server.createList('line', 3, { section }, 'withData');
+    }
+  })
 
 });

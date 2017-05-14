@@ -9,7 +9,7 @@ moduleForComponent('chart-editor-section', 'Integration | Component | chart edit
 
     this.inject.service('store');
 
-    const section = this.store.createRecord('section');
+    const section = this.store.createRecord('section', { name: "Awesome section" });
     const line = this.store.createRecord('line');
     const measure = this.store.createRecord('measure', { beatSchema: '4' });
     const chord = this.store.createRecord('chord', { name: 'D' });
@@ -27,6 +27,11 @@ moduleForComponent('chart-editor-section', 'Integration | Component | chart edit
 test('has a section', function(assert) {
   this.render(hbs`{{chart-editor-section section=section}}`);
   assert.ok(!!this.$('.chart-section'));
+});
+
+test('has section name', function(assert) {
+  this.render(hbs`{{chart-editor-section section=section}}`);
+  assert.equal(this.$('.section-name-input').val(), "Awesome section");
 });
 
 test('can add line', function(assert) {

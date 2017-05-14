@@ -2,6 +2,5 @@ import DS from 'ember-data';
 
 export default DS.Model.extend({
   section: DS.belongsTo('section'),
-  measures: DS.hasMany('measure'),
-  name: DS.attr('string')
+  measures: DS.hasMany('measure')
 });
