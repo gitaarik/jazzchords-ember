@@ -26,7 +26,7 @@ moduleForComponent('chart-editor-section', 'Integration | Component | chart edit
 
 test('has a section', function(assert) {
   this.render(hbs`{{chart-editor-section section=section}}`);
-  assert.ok(!!this.$('.chart-section'));
+  assert.ok(this.$('.chart-section').length);
 });
 
 test('has section name', function(assert) {

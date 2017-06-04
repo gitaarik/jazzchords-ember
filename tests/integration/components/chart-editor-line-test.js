@@ -1,4 +1,4 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { moduleForComponent, test, skip } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('chart-editor-line', 'Integration | Component | chart editor line', {
@@ -10,26 +10,41 @@ moduleForComponent('chart-editor-line', 'Integration | Component | chart editor 
     this.inject.service('store');
 
     const line = this.store.createRecord('line');
-    const measure = this.store.createRecord('measure', { beatSchema: '4' });
-    const chord = this.store.createRecord('chord', { name: 'D' });
+    const measure1 = this.store.createRecord('measure', {
+      line,
+      beatSchema: '4'
+    });
+    const measure2 = this.store.createRecord('measure', {
+      line,
+      beatSchema: '4'
+    });
 
-    measure.get('chords').pushObject(chord);
-    line.get('measures').pushObject(measure);
+    this.store.createRecord('chord', {
+      measure: measure1,
+      name: 'D'
+    });
+
+    this.store.createRecord('chord', {
+      measure: measure2,
+      name: 'F7'
+    });
 
     this.set('line', line);
+    this.set('measure1', measure1);
 
   }
 
 });
 
-test('has a chord', function(assert) {
+test('has two measures', function(assert) {
   this.render(hbs`{{chart-editor-line line=line}}`);
-  assert.equal(this.$('.chord-big .chord-input').val(), 'D');
+  assert.equal(this.$('.section-line .line-measure').length, 2);
 });
 
-test('has one measure', function(assert) {
+test('measures have chords', function(assert) {
   this.render(hbs`{{chart-editor-line line=line}}`);
-  assert.equal(this.$('.measure-box').length, 1);
+  assert.equal(this.$('.section-line .line-measure:nth(0) .measure-box .chord-big .chord-input').val(), 'D');
+  assert.equal(this.$('.section-line .line-measure:nth(1) .measure-box .chord-big .chord-input').val(), 'F7');
 });
 
 test('can add measure', function(assert) {
@@ -37,8 +52,32 @@ test('can add measure', function(assert) {
   this.render(hbs`{{chart-editor-line line=line}}`);
   this.$('.measure-add-button').click();
 
-  assert.equal(this.$('.measure-box').length, 2);
-  assert.equal(this.$('.measure-box:nth(0) .chord-big .chord-input').val(), 'D');
-  assert.equal(this.$('.measure-box:nth(1) .chord-big .chord-input').val(), 'D');
+  assert.equal(this.$('.section-line .line-measure').length, 3);
+  assert.equal(this.$('.section-line .line-measure:nth(0) .measure-box .chord-big .chord-input').val(), 'D');
+  assert.equal(this.$('.section-line .line-measure:nth(1) .measure-box .chord-big .chord-input').val(), 'F7');
+  assert.equal(this.$('.section-line .line-measure:nth(2) .measure-box .chord-big .chord-input').val(), 'F7');
+
+});
+
+test('can remove measure', function(assert) {
+
+  this.render(hbs`{{chart-editor-line line=line}}`);
+  this.$('.section-line .line-measure:nth(1) .measure-box').click();
+  this.$('.section-line .line-measure:nth(1) .measure-edit-popout .remove-measure-button').click();
+
+  assert.equal(this.$('.section-line .line-measure').length, 1);
+  assert.equal(this.$('.section-line .line-measure .measure-box .chord-big .chord-input').val(), 'D');
+
+});
+
+skip('cannot remove last measure of only line', function(assert) {
+
+  this.render(hbs`{{chart-editor-line line=line}}`);
+
+  this.$('.section-line .line-measure:nth(1) .measure-box').click();
+  this.$('.section-line .line-measure:nth(1) .measure-edit-popout .remove-measure-button').click();
+
+  this.$('.section-line .line-measure:nth(0) .measure-box').click();
+  assert.notOk(this.$('.section-line .line-measure:nth(0) .measure-edit-popout .remove-measure-button').length);
 
 });

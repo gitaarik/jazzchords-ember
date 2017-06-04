@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  store: Ember.inject.service('store'),
+  store: Ember.inject.service(),
   actions: {
     addLine() {
       const store = this.get('store');
