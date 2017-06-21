@@ -1,4 +1,4 @@
-import { moduleForComponent, test, skip } from 'ember-qunit';
+import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('chart-editor-line', 'Integration | Component | chart editor line', {
@@ -9,25 +9,12 @@ moduleForComponent('chart-editor-line', 'Integration | Component | chart editor 
 
     this.inject.service('store');
 
-    const line = this.store.createRecord('line');
-    const measure1 = this.store.createRecord('measure', {
-      line,
-      beatSchema: '4'
-    });
-    const measure2 = this.store.createRecord('measure', {
-      line,
-      beatSchema: '4'
-    });
-
-    this.store.createRecord('chord', {
-      measure: measure1,
-      name: 'D'
-    });
-
-    this.store.createRecord('chord', {
-      measure: measure2,
-      name: 'F7'
-    });
+    const section = this.store.createRecord('section');
+    const line = this.store.createRecord('line', { section });
+    const measure1 = this.store.createRecord('measure', { line, beatSchema: '4' });
+    const measure2 = this.store.createRecord('measure', { line, beatSchema: '4' });
+    this.store.createRecord('chord', { measure: measure1, name: 'D' });
+    this.store.createRecord('chord', { measure: measure2, name: 'F7' });
 
     this.set('line', line);
     this.set('measure1', measure1);
@@ -70,7 +57,7 @@ test('can remove measure', function(assert) {
 
 });
 
-skip('cannot remove last measure of only line', function(assert) {
+test('cannot remove last measure of only line', function(assert) {
 
   this.render(hbs`{{chart-editor-line line=line}}`);
 

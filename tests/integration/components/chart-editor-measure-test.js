@@ -9,13 +9,10 @@ moduleForComponent('chart-editor-measure', 'Integration | Component | chart edit
 
     this.inject.service('store');
 
-    const line = this.store.createRecord('line');
+    const section = this.store.createRecord('section');
+    const line = this.store.createRecord('line', { section });
     const measure = this.store.createRecord('measure', { line, beatSchema: '4' });
-
-    this.store.createRecord('chord', {
-      measure,
-      name: 'D'
-    });
+    this.store.createRecord('chord', { measure, name: 'D' });
 
     this.set('measure', measure);
 
@@ -32,6 +29,13 @@ test('opens measure edit popout', function(assert) {
   this.render(hbs`{{chart-editor-measure measure=measure}}`);
   this.$('.line-measure .measure-box').click();
   assert.ok(this.$('.line-measure .measure-edit-popout').length);
+});
+
+test("doesn't open measure edit popup when clicking on the chord input", function(assert) {
+  // this test doesn't seem to work correctly, but will keep it here just in case..
+  this.render(hbs`{{chart-editor-measure measure=measure}}`);
+  this.$('.line-measure .measure-box .chord-input').click();
+  assert.notOk(this.$('.line-measure .measure-edit-popout').length);
 });
 
 test('close measure edit popout', function(assert) {

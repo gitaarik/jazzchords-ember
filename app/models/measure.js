@@ -8,7 +8,7 @@ export default DS.Model.extend({
   chords: DS.hasMany('chord'),
 
   canRemove: Ember.computed('isLast', function() {
-    return !this.get('isLast');
+    return !(this.get('isLast') && this.get('line').get('isLast'));
   }),
 
   isLast: Ember.computed('line.measures.length', function() {

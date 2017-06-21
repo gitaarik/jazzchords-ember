@@ -52,3 +52,43 @@ test('visiting /charts/chart/1', function(assert) {
   });
 
 });
+
+test('section name input width grows when value grows', function(assert) {
+
+  let chart = server.create('chart', {title: "All Of Me"});
+  let section1 = server.create('section', { chart, name: "Intro" });
+  server.create('section', { chart, name: "short" });
+
+  let section1Line1 = server.create('line', { section: section1 });
+
+  let section1Line1Measure1 = server.create(
+    'measure',
+    {
+      line: section1Line1,
+      beatSchema: '4'
+    }
+  );
+
+  server.create(
+    'chord',
+    {
+      measure: section1Line1Measure1,
+      name: "C6/9"
+    }
+  );
+
+  visit('/charts/chart/' + chart.id);
+
+  andThen(function() {
+
+    const widthBefore = find('.section-name-input').width();
+    fillIn('.section-name-input', "this is longer");
+
+    andThen(function() {
+      const widthAfter = find('.section-name-input').width();
+      assert.ok(widthAfter > widthBefore);
+    });
+
+  });
+
+});

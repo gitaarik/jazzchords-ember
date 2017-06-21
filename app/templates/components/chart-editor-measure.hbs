@@ -1,6 +1,6 @@
 <div class="line-measure">
 
-  <div class="measure-box" {{action "toggleMeasureEditPopout"}}>
+  <div class="measure-box" onclick={{action "measureBoxClicked"}}>
 
     {{#if (eq measure.beatSchema '4')}}
       {{#each measure.chords as |chord|}}
@@ -13,7 +13,7 @@
   {{#if popupOpen}}
     <div class="measure-edit-popout popout">
       <div class="popout-arrow-up"></div>
-      <span class="popout-close-button fa fa-times" {{action "toggleMeasureEditPopout"}}></span>
+      <span class="popout-close-button fa fa-times" {{action "closeMeasureEditPopout"}}></span>
       {{#if measure.canRemove}}
         <button class="remove-measure-button" {{action "removeMeasure"}}>Remove measure</button>
       {{/if}}

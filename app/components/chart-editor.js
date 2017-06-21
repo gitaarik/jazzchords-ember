@@ -9,14 +9,10 @@ export default Ember.Component.extend({
 
       const chordName = (
         this.chart
-          .get('sections')
-          .get('lastObject')
-          .get('lines')
-          .get('firstObject')
-          .get('measures')
-          .get('firstObject')
-          .get('chords')
-          .get('firstObject')
+          .get('sections').get('lastObject')
+          .get('lines').get('firstObject')
+          .get('measures').get('firstObject')
+          .get('chords').get('firstObject')
           .get('name')
       );
 
