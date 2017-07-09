@@ -6,6 +6,13 @@ export default Factory.extend({
     afterCreate(measure, server) {
       server.create('chord', { measure });
     }
+  }),
+
+  with2Chords: trait({
+    afterCreate(measure, server) {
+      server.create('chord', { measure });
+      server.create('chord', { measure });
+    }
   })
 
 });

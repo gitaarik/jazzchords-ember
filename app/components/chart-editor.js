@@ -1,7 +1,12 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+
+  tagName: 'article',
+  classNames: ['chart-editor'],
+
   store: Ember.inject.service(),
+
   actions: {
     addSection() {
 
@@ -34,4 +39,5 @@ export default Ember.Component.extend({
 
     }
   }
+
 });

@@ -1,6 +1,4 @@
-<div class="section-line">
-  {{#each line.measures as |measure|}}
-    {{chart-editor-measure measure=measure}}
-  {{/each}}
-  <a {{action 'addMeasure'}} class="measure-add-button">+</a>
-</div>
+{{#each line.measures as |measure|}}
+  {{chart-editor-measure measure=measure}}
+{{/each}}
+<a {{action 'addMeasure'}} class="measure-add-button">+</a>

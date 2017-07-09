@@ -1,32 +1,28 @@
-<div class="chart-section">
+<div class="section-header">
 
-  <div class="section-header">
+  {{input
+    type="text"
+    class="section-name-input"
+    value=section.name
+    placeholder="Untitled section"
+    action="updateSectionName"}}
 
-    {{input
-      type="text"
-      class="section-name-input"
-      value=section.name
-      placeholder="Untitled section"
-      action="updateSectionName"}}
+  {{#if section.canRemove}}
+    <span class="section-remove-button fa fa-times" {{action "toggleRemoveSectionConfirmPopup"}}></span>
+  {{/if}}
 
-    {{#if section.canRemove}}
-      <span class="section-remove-button fa fa-times" {{action "toggleRemoveSectionConfirmPopup"}}></span>
-    {{/if}}
-
-    {{#if showConfirmRemoveSectionPopup}}
-      {{#popup-box class="section-remove-confirm-popup" onClose=(action "toggleRemoveSectionConfirmPopup")}}
-        <p>Are you sure you want to remove this section?</p>
-        <button class="confirm-remove-section-button" {{action "confirmRemoveSection"}}>Yes</button>
-        <button class="cancel-remove-section-button" {{action "toggleRemoveSectionConfirmPopup"}}>No</button>
-      {{/popup-box}}
-    {{/if}}
-
-  </div>
-
-  {{#each section.lines as |line|}}
-    {{chart-editor-line line=line}}
-  {{/each}}
-
-  <a {{action 'addLine'}} class="line-add-button">+</a>
+  {{#if showConfirmRemoveSectionPopup}}
+    {{#popup-box class="section-remove-confirm-popup" onClose=(action "toggleRemoveSectionConfirmPopup")}}
+      <p>Are you sure you want to remove this section?</p>
+      <button class="confirm-remove-section-button" {{action "confirmRemoveSection"}}>Yes</button>
+      <button class="cancel-remove-section-button" {{action "toggleRemoveSectionConfirmPopup"}}>No</button>
+    {{/popup-box}}
+  {{/if}}
 
 </div>
+
+{{#each section.lines as |line|}}
+  {{chart-editor-line line=line}}
+{{/each}}
+
+<a {{action 'addLine'}} class="line-add-button">+</a>

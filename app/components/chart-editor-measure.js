@@ -2,10 +2,39 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
+  classNames: ['line-measure'],
+
   store: Ember.inject.service(),
+
+  didRender() {
+    this.drawDivisionLines();
+  },
 
   willDestroy() {
     this.removePopupCloseListeners();
+  },
+
+  drawDivisionLines() {
+
+    const canvasEl = this.$('.measure-box-canvas');
+
+    if (!canvasEl.length) {
+      return;
+    }
+
+    canvasEl.width = 100;
+    canvasEl.height = 100;
+
+    const context = canvasEl[0].getContext('2d');
+    context.lineWidth = 1;
+
+    if (this.get('measure').get('beatSchema') === '2-2') {
+      context.beginPath();
+      context.moveTo(0, 100);
+      context.lineTo(100, 0);
+      context.stroke();
+    }
+
   },
 
   addPopupCloseListeners() {

@@ -159,11 +159,16 @@ button {
 }
 
 .measure-box {
+  position: relative;
   width: 100px;
   height: 100px;
   border: 1px solid #000;
   margin-right: -1px;
   cursor: pointer;
+}
+
+.measure-box-canvas {
+  position: absolute;
 }
 
 .measure-edit-popout {
@@ -179,11 +184,33 @@ button {
   width: 100%;
 }
 
-.chord-big .chord-input {
+.chord-input {
+  text-align: center;
+}
+
+.chord-big {
   margin: 25px 0;
   line-height: 50px;
-  text-align: center;
-  font-size: 35px;
+}
+
+.chord-big .chord-input {
+  font-size: 26px;
+}
+
+.chord-medium {
+  position: absolute;
+  margin: 16px 0;
+  width: 56px;
+  line-height: 19px;
+}
+
+.chord-medium:last-child {
+  right: 0;
+  bottom: 0;
+}
+
+.chord-medium .chord-input {
+  font-size: 19px;
 }
 
 .measure-add-button {

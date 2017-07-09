@@ -1,7 +1,11 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+
+  classNames: ['section-line'],
+
   store: Ember.inject.service(),
+
   actions: {
     addMeasure() {
       const store = this.get('store');
@@ -21,4 +25,5 @@ export default Ember.Component.extend({
       this.line.get('measures').pushObject(measure);
     }
   }
+
 });
