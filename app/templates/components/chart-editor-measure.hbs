@@ -15,12 +15,21 @@
 
 </div>
 
-{{#if popupOpen}}
+{{#if popoutOpen}}
+
   <div class="measure-edit-popout popout">
+
     <div class="popout-arrow-up"></div>
     <span class="popout-close-button fa fa-times" {{action "closeMeasureEditPopout"}}></span>
+
+    <div class="beat-schemas">
+      <div class="beat-schema-2-2" onclick={{action "changeBeatSchema" "2-2"}}>2-2</div>
+    </div>
+
     {{#if measure.canRemove}}
       <button class="remove-measure-button" {{action "removeMeasure"}}>Remove measure</button>
     {{/if}}
+
   </div>
+
 {{/if}}

@@ -11,7 +11,7 @@ export default Ember.Component.extend({
   },
 
   willDestroy() {
-    this.removePopupCloseListeners();
+    this.removePopoutCloseListeners();
   },
 
   drawDivisionLines() {
@@ -37,49 +37,49 @@ export default Ember.Component.extend({
 
   },
 
-  addPopupCloseListeners() {
+  addPopoutCloseListeners() {
 
-    this.closePopupOnEsc = event => {
+    this.closePopoutOnEsc = event => {
       if (event.key === 'Escape') {
-        this.closePopup();
+        this.closePopout();
       }
     };
 
-    this.closePopupOnClickOutside = event => {
+    this.closePopoutOnClickOutside = event => {
 
       let target = event.target;
-      let insidePopup = false;
+      let insidePopout = false;
 
-      while (!insidePopup && target.classList) {
-        insidePopup = target.classList.contains('measure-edit-popout');
+      while (!insidePopout && target.classList) {
+        insidePopout = target.classList.contains('measure-edit-popout');
         target = target.parentNode;
       }
 
-      if (!insidePopup) {
-        this.closePopup();
+      if (!insidePopout) {
+        this.closePopout();
       }
 
     };
 
-    document.addEventListener('keypress', this.closePopupOnEsc);
-    document.addEventListener('click', this.closePopupOnClickOutside);
+    document.addEventListener('keypress', this.closePopoutOnEsc);
+    document.addEventListener('click', this.closePopoutOnClickOutside);
 
   },
 
-  removePopupCloseListeners() {
-    document.removeEventListener('keypress', this.closePopupOnEsc);
-    document.removeEventListener('click', this.closePopupOnClickOutside);
+  removePopoutCloseListeners() {
+    document.removeEventListener('keypress', this.closePopoutOnEsc);
+    document.removeEventListener('click', this.closePopoutOnClickOutside);
   },
 
-  openPopup() {
-    this.set('popupOpen', true);
-    setTimeout(() => this.addPopupCloseListeners(), 0);
+  openPopout() {
+    this.set('popoutOpen', true);
+    setTimeout(() => this.addPopoutCloseListeners(), 0);
   },
 
-  closePopup() {
-    this.removePopupCloseListeners();
+  closePopout() {
+    this.removePopoutCloseListeners();
     if (!this.get('isDestroyed')) {
-      this.set('popupOpen', false);
+      this.set('popoutOpen', false);
     }
   },
 
@@ -87,16 +87,37 @@ export default Ember.Component.extend({
 
     measureBoxClicked(event) {
       if (!event.target.classList.contains('chord-input')) {
-        if (this.get('popupOpen')) {
-          this.closePopup();
+        if (this.get('popoutOpen')) {
+          this.closePopout();
         } else {
-          this.openPopup();
+          this.openPopout();
         }
       }
     },
 
+    changeBeatSchema(beatSchema) {
+
+      this.measure.set('beatSchema', beatSchema);
+
+      if (beatSchema === '2-2' && this.measure.get('chords').get('length') < 2) {
+
+        const chord = this.get('store').createRecord('chord', {
+          name: (
+            this.measure
+              .get('chords')
+              .get('firstObject')
+              .get('name')
+          )
+        });
+
+        this.measure.get('chords').pushObject(chord);
+
+      }
+
+    },
+
     closeMeasureEditPopout() {
-      this.closePopup();
+      this.closePopout();
     },
 
     removeMeasure() {
