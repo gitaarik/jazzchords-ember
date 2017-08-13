@@ -79,14 +79,32 @@ test('measure with two chords contains a canvas element which draws the division
   assert.ok(this.$('.line-measure .measure-box canvas').length);
 });
 
-test('change measure beatSchema through measure edit popout', function(assert) {
+test('change measure beatSchema from 4 to 2-2', function(assert) {
 
   this.render(hbs`{{chart-editor-measure measure=measure}}`);
+
+  assert.equal(this.get('measure').get('beatSchema'), '4');
+
   this.$('.line-measure .measure-box').click();
-  this.$('.line-measure .measure-edit-popout .beat-schemas .beat-schema-2-2').click();
+  this.$('.line-measure .measure-edit-popout .beat-schema-previews .beat-schema-preview-2-2').click();
 
   assert.equal(this.get('measure').get('beatSchema'), '2-2');
   assert.equal(this.get('measure').get('chords').objectAt('0').get('name'), 'D');
   assert.equal(this.get('measure').get('chords').objectAt('1').get('name'), 'D');
+
+});
+
+test('change measure beatSchema from 2-2 to 4', function(assert) {
+
+  this.render(hbs`{{chart-editor-measure measure=measureWith2Chords}}`);
+
+  assert.equal(this.get('measureWith2Chords').get('beatSchema'), '2-2');
+
+  this.$('.line-measure .measure-box').click();
+  this.$('.line-measure .measure-edit-popout .beat-schema-previews .beat-schema-preview-4').click();
+
+  assert.equal(this.get('measureWith2Chords').get('beatSchema'), '4');
+  assert.equal(this.get('measureWith2Chords').get('chords').objectAt('0').get('name'), 'D');
+  assert.equal(this.get('measureWith2Chords').get('chords').get('length'), 1);
 
 });

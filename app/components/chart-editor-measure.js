@@ -16,6 +16,16 @@ export default Ember.Component.extend({
 
   drawDivisionLines() {
 
+    this.drawMeasureBoxDivisionLines();
+
+    if (this.get('popoutOpen')) {
+      this.drawBeatSchemaPreviewDivisionLines();
+    }
+
+  },
+
+  drawMeasureBoxDivisionLines() {
+
     const canvasEl = this.$('.measure-box-canvas');
 
     if (!canvasEl.length) {
@@ -29,11 +39,36 @@ export default Ember.Component.extend({
     context.lineWidth = 1;
 
     if (this.get('measure').get('beatSchema') === '2-2') {
-      context.beginPath();
-      context.moveTo(0, 100);
-      context.lineTo(100, 0);
-      context.stroke();
+      this.drawMeasureBox2_2DivisionLines(context);
     }
+
+  },
+
+  drawMeasureBox2_2DivisionLines(context) {
+    context.beginPath();
+    context.moveTo(0, 100);
+    context.lineTo(100, 0);
+    context.stroke();
+  },
+
+  drawBeatSchemaPreviewDivisionLines() {
+    this.drawBeatSchemaPreview2_2DivisionLines();
+  },
+
+  drawBeatSchemaPreview2_2DivisionLines() {
+
+    const canvasEl = this.$('.beat-schema-preview-2-2-canvas');
+
+    canvasEl.width = 50;
+    canvasEl.height = 50;
+
+    const context = canvasEl[0].getContext('2d');
+    context.lineWidth = 1;
+
+    context.beginPath();
+    context.moveTo(0, 50);
+    context.lineTo(50, 0);
+    context.stroke();
 
   },
 
@@ -99,7 +134,17 @@ export default Ember.Component.extend({
 
       this.measure.set('beatSchema', beatSchema);
 
-      if (beatSchema === '2-2' && this.measure.get('chords').get('length') < 2) {
+      if (
+        beatSchema === '4' &&
+        this.measure.get('chords').get('length') > 1
+      ) {
+        this.measure.get('chords').removeObject(
+          this.measure.get('chords').objectAt(1)
+        );
+      } else if (
+        beatSchema === '2-2' &&
+        this.measure.get('chords').get('length') < 2
+      ) {
 
         const chord = this.get('store').createRecord('chord', {
           name: (

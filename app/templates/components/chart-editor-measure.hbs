@@ -22,8 +22,18 @@
     <div class="popout-arrow-up"></div>
     <span class="popout-close-button fa fa-times" {{action "closeMeasureEditPopout"}}></span>
 
-    <div class="beat-schemas">
-      <div class="beat-schema-2-2" onclick={{action "changeBeatSchema" "2-2"}}>2-2</div>
+    <div class="beat-schema-previews">
+
+      <div class="beat-schema-preview beat-schema-preview-4" onclick={{action "changeBeatSchema" "4"}}>
+        <div class="beat-schema-preview-4-chord-1">1</div>
+      </div>
+
+      <div class="beat-schema-preview beat-schema-preview-2-2" onclick={{action "changeBeatSchema" "2-2"}}>
+        <canvas class="beat-schema-preview-2-2-canvas" width="50" height="50"></canvas>
+        <div class="beat-schema-preview-2-2-chord-1">1</div>
+        <div class="beat-schema-preview-2-2-chord-2">2</div>
+      </div>
+
     </div>
 
     {{#if measure.canRemove}}
