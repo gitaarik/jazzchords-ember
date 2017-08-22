@@ -55,7 +55,7 @@ export default Ember.Component.extend({
     },
 
     confirmRemoveSection() {
-      this.get('store').unloadRecord(this.section);
+      this.section.set('chart', null);
     }
 
   }

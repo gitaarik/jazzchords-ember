@@ -168,10 +168,10 @@ export default Ember.Component.extend({
     removeMeasure() {
 
       if (this.measure.get('isLast')) {
-        this.get('store').unloadRecord(this.measure.get('line').content); // TODO lookinto `.content`
+        this.measure.get('line').set('section', null);
       }
 
-      this.get('store').unloadRecord(this.measure);
+      this.measure.set('line', null);
 
     }
 
