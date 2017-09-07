@@ -22,6 +22,7 @@
 html,
 body {
   font-family: Oxygen;
+  font-weight: 100;
 }
 
 input,
@@ -29,6 +30,7 @@ textarea,
 select,
 button {
   font-family: inherit;
+  font-weight: inherit;
 }
 
 button {
@@ -46,6 +48,13 @@ button {
 
 button:hover {
   background: #EEE;
+}
+
+h1 {
+	font-size: 30px;
+	font-weight: 100;
+	margin: 24px 0;
+	line-height: 40px;
 }
 
 .popup-overlay {
@@ -96,8 +105,151 @@ button:hover {
   cursor: pointer;
 }
 
-.chart-table > thead > th {
-  text-align: left;
+.base-header-content {
+  display: flex;
+  margin: 0 auto;
+  width: 920px;
+}
+
+.chart-search {
+  flex-grow: 1;
+  padding-top: 25px;
+}
+
+.base-header-heading {
+	font-size: 32px;
+  margin-right: 25px;
+}
+
+.base-header-heading a {
+  font-weight: 200;
+  text-decoration: none;
+  color: inherit;
+}
+
+.site-content {
+  margin: 0 auto;
+  width: 920px;
+}
+
+.chart-search-input-container {
+  display: flex;
+  border: solid 1px #999;
+  border-radius: 5px;
+  width: 302px;
+}
+
+.chart-search-before-input,
+.chart-search-after-input {
+  margin: 0;
+  padding: 0;
+  width: 0;
+  height: 0;
+  border: none;
+}
+
+.chart-search-input {
+  flex-grow: 1;
+  padding: 10px;
+  height: 41px;
+  border-radius: 5px;
+  border: none;
+  box-sizing: border-box;
+}
+
+.chart-search-button {
+  padding: 10px 15px;
+  height: 41px;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  box-shadow: none;
+}
+
+.chart-search-results {
+  display: absolute;
+}
+
+.main-menu {
+  display: flex;
+  padding-top: 33px;
+}
+
+.main-menu-item {
+  position: relative;
+  margin: 0 5px;
+}
+
+.main-menu-item-text {
+  padding: 5px 8px;
+  border: solid 1px transparent;
+  border-radius: 4px;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.main-menu-item-text:hover {
+  border: solid 1px #999;
+}
+
+.main-menu-item-popout {
+  top: 40px;
+  left: -35px;
+}
+
+.main-menu-item-help .main-menu-item-popout {
+    left: -79px;
+}
+
+.main-menu-item-help .main-menu-item-popout .popout-arrow-up {
+    left: 84px;
+}
+
+.main-menu-item-submenu-text {
+  display: block;
+  padding: 5px;
+  white-space: nowrap;
+}
+
+.main-menu-item-submenu-text:hover {
+  background: #EEE;
+  border-radius: 3px;
+}
+
+.main-menu-item-submenu-text {
+  text-decoration: none;
+  color: inherit;
+}
+
+.chart-list {
+  list-style: none;
+	padding: 0;
+}
+
+.chart-list-item {
+  display: flex;
+}
+
+.chart-list-item-link {
+  flex-grow: 1;
+  padding: 20px 10px;
+  text-decoration: none;
+}
+
+.chart-list-item-link:hover {
+  background-image: -o-linear-gradient(left, #e6e6e6 66%, #ffffff 100%);
+  background-image: -moz-linear-gradient(left, #e6e6e6 66%, #ffffff 100%);
+  background-image: -webkit-gradient(linear, left, right, color-stop(0, #e6e6e6), color-stop(1, #ffffff));
+  background-image: -webkit-linear-gradient(left, #e6e6e6 66%, #ffffff 100%);
+  background-image: -ms-linear-gradient(left, #e6e6e6 66%, #ffffff 100%);
+  background-image: linear-gradient(left, #e6e6e6 66%, #ffffff 100%);
+}
+
+.chart-list-item-link-song-name {
+  margin-right: 10px;
+  font-size: 18px;
+  color: #000;
+  text-decoration: none;
 }
 
 .chart-title-input {
@@ -287,7 +439,4 @@ button:hover {
   text-align: center;
   font-weight: bold;
   cursor: pointer;
-}
-
-.section-add-button {
 }

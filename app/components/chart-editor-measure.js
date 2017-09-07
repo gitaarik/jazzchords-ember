@@ -107,8 +107,14 @@ export default Ember.Component.extend({
   },
 
   openPopout() {
+
     this.set('popoutOpen', true);
+
+    // Use a setTimeout to add the popout close listeners because the listeners
+    // shouldn't listen to actions that opened the popout, otherwise they close
+    // the popout immediately again.
     setTimeout(() => this.addPopoutCloseListeners(), 0);
+
   },
 
   closePopout() {

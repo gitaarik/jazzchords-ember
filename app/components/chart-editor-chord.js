@@ -16,9 +16,11 @@ export default Ember.Component.extend({
         this.chord.set('name', this.$('.chord-input').val());
     }
   },
+
   didInsertElement: function() {
     if(this.chord.get('focusOnInsert')) {
       this.$('.chord-input').focus();
     }
   }
+
 });

@@ -3,6 +3,14 @@ import Ember from 'ember';
 export default Ember.Component.extend({
 
   willRender() {
+    this.addClosePopupOnEscListeners();
+  },
+
+  willDestroy() {
+    this.removeClosePopupOnEscListeners();
+  },
+
+  addClosePopupOnEscListeners() {
     this.closeOnEsc = event => {
       if (event.key === 'Escape') {
         this.closePopup(event);
@@ -11,8 +19,12 @@ export default Ember.Component.extend({
     document.addEventListener('keypress', this.closeOnEsc);
   },
 
-  willDestroy() {
+  removeClosePopupOnEscListeners() {
     document.removeEventListener('keypress', this.closeOnEsc);
+  },
+
+  isClickOnOverlay(event) {
+    return event.target.classList.contains('popup-overlay');
   },
 
   closePopup(event) {
@@ -24,7 +36,7 @@ export default Ember.Component.extend({
   actions: {
 
     overlayClicked(event) {
-      if (event.target.classList.contains('popup-overlay')) {
+      if (this.isClickOnOverlay(event)) {
         this.closePopup(event);
       }
     }

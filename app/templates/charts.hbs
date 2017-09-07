@@ -1,14 +1,15 @@
-<h1>Charts</h1>
+<div class="site-content">
 
-<table class="chart-table">
-  <thead>
-    <th>Name</th>
-  </thead>
-  <tbody>
-    {{#each model as |chart|}}
-      <tr>
-        <td>{{#link-to 'charts/chart' chart}}{{chart.title}}{{/link-to}}</td>
-      </tr>
-    {{/each}}
-  </tbody>
-</table>
+  <h1>Charts</h1>
+
+  <ul class="chart-list">
+      {{#each model as |chart|}}
+        <li class="chart-list-item">
+          {{#link-to 'charts/chart' chart class='chart-list-item-link'}}
+            <span class="chart-list-item-link-song-name">{{chart.title}}</span>
+          {{/link-to}}
+        </li>
+      {{/each}}
+  </ul>
+
+</div>

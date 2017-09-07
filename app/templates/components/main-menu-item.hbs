@@ -1,0 +1,29 @@
+{{#if subMenuItems}}
+
+  <span class="main-menu-item-text" {{action 'openSubMenu'}}>{{text}}</span>
+
+  {{#if subMenuOpen}}
+
+    <div class="main-menu-item-popout popout">
+
+      <div class="popout-arrow-up"></div>
+
+      <div class="main-menu-item-submenu">
+
+        {{#each subMenuItems as |subMenuItem|}}
+
+          <div class="main-menu-item-submenu-item">
+            <a class="main-menu-item-submenu-text" href="{{subMenuItem.url}}">{{subMenuItem.text}}</a>
+          </div>
+
+        {{/each}}
+
+      </div>
+
+    </div>
+
+  {{/if}}
+
+{{else}}
+  <a href="{{url}}" class="main-menu-item-text">{{text}}</a>
+{{/if}}
