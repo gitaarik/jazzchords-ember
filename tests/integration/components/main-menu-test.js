@@ -27,12 +27,6 @@ test('has all menu items', function(assert) {
 
 });
 
-test('"all charts" menu-item has no submenu when clicked', function(assert) {
-  this.render(hbs`{{main-menu}}`);
-  this.$('.main-menu .main-menu-item-all-charts .main-menu-item-text').click();
-  assert.notOk(this.$('.main-menu .main-menu-item-all-charts .main-menu-item-submenu').length);
-});
-
 test('"help" menu-item has submenu when clicked', function(assert) {
   this.render(hbs`{{main-menu}}`);
   this.$('.main-menu .main-menu-item-help .main-menu-item-text').click();

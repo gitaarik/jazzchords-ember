@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('route:charts/create', 'Unit | Route | charts/create', {
+moduleFor('route:charts.create', 'Unit | Route | charts/create', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
 });

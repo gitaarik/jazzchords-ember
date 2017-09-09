@@ -7,9 +7,10 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('charts');
-  this.route('charts/chart', { path: '/charts/chart/:id' });
-  this.route('charts/create');
+  this.route('charts', function() {
+    this.route('create');
+    this.route('chart', { path: ':id' });
+  });
 });
 
 export default Router;

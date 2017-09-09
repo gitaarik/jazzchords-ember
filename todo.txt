@@ -1,0 +1,2 @@
+- unieke elementen met id specificeren ipv class
+- jazzchords logo klik link met link-to helper

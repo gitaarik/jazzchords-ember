@@ -5,7 +5,14 @@ moduleForComponent('chart-search', 'Integration | Component | chart search', {
   integration: true
 });
 
-test('it renders', function(assert) {
+test('it renders correctly', function(assert) {
   this.render(hbs`{{chart-search}}`);
   assert.ok(this.$('.chart-search').length);
+  assert.ok(this.$('.chart-search .chart-search-input').length);
+});
+
+test('renders with search results', function(assert) {
+  this.render(hbs`{{chart-search searchResults=searchResults}}`);
+  assert.ok(this.$('.chart-search').length);
+  assert.ok(this.$('.chart-search .chart-search-input').length);
 });

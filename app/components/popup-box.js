@@ -2,7 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
-  willRender() {
+  init() {
+    this._super(...arguments);
     this.addClosePopupOnEscListeners();
   },
 

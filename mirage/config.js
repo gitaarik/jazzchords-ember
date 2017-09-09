@@ -2,8 +2,28 @@ export default function() {
 
   this.namespace = '/api';
 
-  this.get('/charts', function(schema) {
-    return schema.charts.all();
+  this.get('/charts', function(schema, request) {
+
+    let titleRegex;
+
+    if (request.queryParams.title) {
+      titleRegex = new RegExp('.*' + request.queryParams.title + '.*', 'i');
+    }
+
+    return schema.charts.all().filter(chart => {
+
+      if (titleRegex) {
+
+        if (titleRegex.test(chart.title)) {
+          return chart;
+        }
+
+      } else {
+        return chart;
+      }
+
+    });
+
   });
 
   this.get('/charts/:id', (schema, request) => {

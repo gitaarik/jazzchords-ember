@@ -3,7 +3,7 @@ import moduleForAcceptance from 'jazzchords/tests/helpers/module-for-acceptance'
 
 moduleForAcceptance('Acceptance | charts/chart');
 
-test('visiting /charts/chart/1', function(assert) {
+test('visiting /charts/1', function(assert) {
 
   let chart = server.create('chart', {title: "All Of Me"});
   let section1 = server.create('section', { chart, name: "Intro" });
@@ -27,11 +27,11 @@ test('visiting /charts/chart/1', function(assert) {
     }
   );
 
-  visit('/charts/chart/' + chart.id);
+  visit('/charts/' + chart.id);
 
   andThen(function() {
 
-    assert.equal(currentURL(), '/charts/chart/' + chart.id);
+    assert.equal(currentURL(), '/charts/' + chart.id);
     assert.equal(find('.chart-title-input').val(), 'All Of Me');
     assert.equal(find('.chart-section').length, 2);
     assert.equal(find('.chart-section:nth(0) .section-name-input').val(), "Intro");
@@ -77,7 +77,7 @@ test('section name input width grows when value grows', function(assert) {
     }
   );
 
-  visit('/charts/chart/' + chart.id);
+  visit('/charts/' + chart.id);
 
   andThen(function() {
 

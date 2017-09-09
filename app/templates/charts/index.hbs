@@ -1,0 +1,15 @@
+<div class="site-content">
+
+  <h1>All charts</h1>
+
+  <ul class="chart-list">
+      {{#each model as |chart|}}
+        <li class="chart-list-item">
+          {{#link-to 'charts.chart' chart class='chart-list-item-link'}}
+            <span class="chart-list-item-link-song-name">{{chart.title}}</span>
+          {{/link-to}}
+        </li>
+      {{/each}}
+  </ul>
+
+</div>

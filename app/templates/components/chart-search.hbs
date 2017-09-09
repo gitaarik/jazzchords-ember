@@ -1,10 +1,50 @@
 <div class="chart-search-input-container">
+
   <input type="text" class="chart-search-before-input">
-  <input type="text" class="chart-search-input" placeholder="Search charts" autocomplete="off">
+
+  {{input
+    class="chart-search-input"
+    placeholder="Search charts"
+    autocomplete="off"
+    value=searchTerm
+    key-up="updateSearchTerm"
+    enter="selectFocussedChart"
+    focus-in="showResults"}}
+
   <input type="text" class="chart-search-after-input">
+
   <button type="submit" class="chart-search-button fa fa-search" value="Search"></button>
+
 </div>
 
-{{#if searchResults}}
-  <ul class="chart-search-results"></ul>
+{{#if (and showResults searchTerm)}}
+
+  <div class="chart-search-results-container">
+
+    {{#if loading}}
+      <div class="chart-search-loading">
+        <div class="chart-search-loading-icon-container">
+          <span class="fa fa-spinner fa-pulse"></span>
+        </div>
+      </div>
+    {{/if}}
+
+    <ul class="chart-search-results {{if loading "chart-search-results-loading"}}">
+      {{#if searchResults}}
+        {{#each searchResults as |chart index|}}
+          <li class="chart-search-result {{if (eq focussedResultIndex index) "chart-search-result-focussed"}}">
+            {{#link-to 'charts.chart' chart.id class="chart-search-result-link" click=(action 'chartLinkClicked')}}
+              {{chart.title}}
+            {{/link-to}}
+          </li>
+        {{/each}}
+      {{else}}
+        {{#unless loading}}
+          <li class="chart-search-no-results">No charts found</li>
+        {{/unless}}
+      {{/if}}
+    </ul>
+
+  </div>
+
 {{/if}}

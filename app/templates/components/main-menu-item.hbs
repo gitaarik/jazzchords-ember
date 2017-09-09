@@ -13,7 +13,9 @@
         {{#each subMenuItems as |subMenuItem|}}
 
           <div class="main-menu-item-submenu-item">
-            <a class="main-menu-item-submenu-text" href="{{subMenuItem.url}}">{{subMenuItem.text}}</a>
+            {{#link-to url class="main-menu-item-submenu-text"}}
+              {{subMenuItem.text}}
+            {{/link-to}}
           </div>
 
         {{/each}}
@@ -25,5 +27,7 @@
   {{/if}}
 
 {{else}}
-  <a href="{{url}}" class="main-menu-item-text">{{text}}</a>
+  {{#link-to url class="main-menu-item-text"}}
+    {{text}}
+  {{/link-to}}
 {{/if}}
