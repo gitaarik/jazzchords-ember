@@ -9,9 +9,15 @@ test('visiting /charts', function(assert) {
   visit('/charts');
 
   andThen(function() {
+
     assert.equal(currentURL(), '/charts');
-    assert.equal(find('table.chart-table > tbody > tr').length, 10);
-    assert.equal(find('table.chart-table > tbody > tr:first > td').text(), charts[0].title);
+    assert.equal(find('.chart-list-item').length, 10);
+
+    assert.equal(
+      find('.chart-list-item:first .chart-list-item-link-song-name').text(),
+      charts[0].title
+    );
+
   });
 
 });
