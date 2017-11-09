@@ -24,10 +24,12 @@ export default Ember.Component.extend({
 
   addCloseResultsListeners() {
     this.addCloseResultsOnOutsideClickListeners();
+    this.addCloseResultsOnEscListeners();
   },
 
   removeCloseResultsListeners() {
     this.removeCloseResultsOnOutsideClickListeners();
+    this.removeCloseResultsOnEscListeners();
   },
 
   addCloseResultsOnOutsideClickListeners() {
@@ -60,7 +62,7 @@ export default Ember.Component.extend({
 
   addCloseResultsOnEscListeners() {
     this.closeResultsOnEsc = event => {
-      if (event.key === 'Escape') {
+      if (event.keyCode === 27) {
         this.closeResults();
       }
     };
@@ -115,6 +117,7 @@ export default Ember.Component.extend({
       this.get('onSelect')(
         this.searchResults.objectAt(this.focussedResultIndex)
       );
+      this.closeResults();
     },
 
     showResults() {

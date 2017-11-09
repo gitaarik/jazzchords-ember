@@ -119,7 +119,8 @@ test("when there's only one result, it is automatically focussed", function(asse
 
 test(
   "when hitting enter when there's only one " +
-  "result, it should navigate to that chart",
+  "result, it should navigate to that chart, " +
+  "and close the results popup",
   function(assert) {
 
     const chart = server.create('chart', {title: "All Of Me"});
@@ -130,12 +131,14 @@ test(
 
     andThen(function() {
 
+      assert.ok(find('.chart-search-results').length);
       assert.equal(currentPath(), 'index');
       keyEvent('.chart-search-input', 'keyup', 13); // press enter
 
       andThen(function() {
         assert.equal(currentPath(), 'charts.chart');
         assert.equal(currentURL(), '/charts/' + chart.id);
+        assert.notOk(find('.chart-search-results').length);
       });
 
     });
@@ -170,6 +173,30 @@ test(
 
       });
 
+    });
+
+  }
+);
+
+test(
+  'results box closes when hitting Esc ' +
+  'and opens again when clicking on it',
+  function(assert) {
+
+    server.create('chart', {title: "All Of Me"});
+
+    visit('/');
+    fillIn('.chart-search-input', "all of");
+    triggerEvent('.chart-search-input', 'keyup');
+
+    andThen(function() {
+      assert.ok(find('.chart-search-results').length);
+      keyEvent('.chart-search-input-container', 'keypress', 27).then(function() {
+        assert.notOk(find('.chart-search-results').length);
+        click('.chart-search-input').then(function() {
+          assert.ok(find('.chart-search-results').length);
+        });
+      });
     });
 
   }
