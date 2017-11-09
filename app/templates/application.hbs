@@ -3,7 +3,7 @@
   <div class="base-header-content">
 
     <h1 class="base-header-heading">
-      <a href="/">JazzChords</a>
+      {{#link-to "application"}}JazzChords{{/link-to}}
     </h1>
 
     {{chart-search onSelect=(action 'navigateToChart')}}

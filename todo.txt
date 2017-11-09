@@ -1,2 +1,2 @@
+- navigeren naar chart met enter -> sluit search results popup
 - unieke elementen met id specificeren ipv class
-- jazzchords logo klik link met link-to helper
