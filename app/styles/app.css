@@ -2,21 +2,21 @@
   font-family: 'Oxygen';
   font-style: normal;
   font-weight: 300;
-  src: local('Oxygen Light'), local('Oxygen-Light'), url('/assets/oxygen/Oxygen-Light.ttf') format('truetype');
+  src: local('Oxygen Light'), local('Oxygen-Light'), url('/fonts/oxygen/Oxygen-Light.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Oxygen';
   font-style: normal;
   font-weight: 400;
-  src: local('Oxygen'), local('Oxygen-Regular'), url('/assets/oxygen/Oxygen-Regular.ttf') format('truetype');
+  src: local('Oxygen'), local('Oxygen-Regular'), url('/fonts/oxygen/Oxygen-Regular.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Oxygen';
   font-style: normal;
   font-weight: 700;
-  src: local('Oxygen Bold'), local('Oxygen-Bold'), url('/assets/oxygen/Oxygen-Bold.ttf') format('truetype');
+  src: local('Oxygen Bold'), local('Oxygen-Bold'), url('/fonts/oxygen/Oxygen-Bold.ttf') format('truetype');
 }
 
 html,
@@ -36,27 +36,60 @@ button {
 }
 
 button {
-	height: 30px;
-	line-height: 30px;
+  height: 30px;
+  line-height: 30px;
   background: white;
-	border: 1px solid #000000;
-	border-radius: 5px 5px 5px 5px;
-	box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
-	color: #000000;
-	text-align: center;
-	text-decoration: none;
-	cursor: pointer;
+  border: 1px solid #000000;
+  border-radius: 5px 5px 5px 5px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  color: #000000;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 button:hover {
   background: #EEE;
 }
 
-h1 {
-	font-size: 30px;
-	font-weight: 100;
-	margin: 24px 0;
-	line-height: 40px;
+.heading1 {
+  margin: 28px 0;
+  font-size: 40px;
+  font-weight: 100;
+  line-height: 50px;
+}
+
+.heading2 {
+  margin: 26px 0;
+  font-size: 30px;
+  font-weight: 100;
+  line-height: 40px;
+}
+
+.heading3 {
+  margin: 24px 0;
+  font-size: 26px;
+  font-weight: 100;
+  line-height: 30px;
+}
+
+.heading4 {
+  margin: 22px 0;
+  font-size: 23px;
+  font-weight: 100;
+  line-height: 27px;
+}
+
+.heading5 {
+  margin: 20px 0;
+  font-size: 18px;
+  font-weight: 100;
+  line-height: 24px;
+}
+
+.frontpage .heading1 {
+  line-height: 60px;
+  text-align: center;
 }
 
 .popup-overlay {
@@ -119,8 +152,11 @@ h1 {
 }
 
 .base-header-heading {
-	font-size: 32px;
+  margin: 24px 0;
   margin-right: 25px;
+  font-size: 32px;
+  font-weight: 100;
+  line-height: 40px;
 }
 
 .base-header-heading a {
@@ -277,9 +313,25 @@ h1 {
   color: inherit;
 }
 
+.frontpage-intro-content {
+  display: flex;
+}
+
+.frontpage-intro-text {
+  text-align: center;
+  margin-right: 25px;
+}
+
+.frontpage-intro-text .heading5 {
+  margin: 30px 0;
+}
+
+.frontpage-intro-image {
+}
+
 .chart-list {
   list-style: none;
-	padding: 0;
+  padding: 0;
 }
 
 .chart-list-item {
