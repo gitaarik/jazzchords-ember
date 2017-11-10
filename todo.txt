@@ -1,2 +1,0 @@
-- switchen tussen search results met pijltjes toetsen
-- unieke elementen met id specificeren ipv class
