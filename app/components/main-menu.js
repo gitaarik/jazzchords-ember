@@ -6,11 +6,10 @@ export default Ember.Component.extend({
   helpSubMenuItems: [
     {
       text: 'How to read',
-      url: '/help/how-to-read/'
+      route: 'help.how-to-read'
     },
     {
-      text: 'Chord symbols',
-      url: '/help/chord-symbols/'
+      text: 'Chord symbols'
     }
   ]
 });

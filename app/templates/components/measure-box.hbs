@@ -1,0 +1,9 @@
+{{measure-box-canvas beatSchema=beatSchema}}
+
+<div class="measure-box-chords">
+  {{#each chordsData as |chordData|}}
+    <div class="measure-chord {{chordData.className}}">
+      <span>{{chordData.chordName}}</span>
+    </div>
+  {{/each}}
+</div>

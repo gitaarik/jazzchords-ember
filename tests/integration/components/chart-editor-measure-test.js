@@ -74,7 +74,7 @@ test('chords of measure with two chords have .chord-medium class', function(asse
   assert.ok(this.$('.line-measure .measure-box .measure-chord').hasClass('chord-medium'));
 });
 
-test('measure with two chords contains a canvas element which draws the division line', function(assert) {
+test('measure with two chords contains a canvas element which draws the separation line', function(assert) {
   this.render(hbs`{{chart-editor-measure measure=measureWith2Chords}}`);
   assert.ok(this.$('.line-measure .measure-box canvas').length);
 });

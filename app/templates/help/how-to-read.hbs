@@ -1,0 +1,94 @@
+<div class="site-content-centered">
+
+  <h2 class="heading2">How to read</h2>
+
+  <section>
+
+    <h3 class="heading3">Measures</h3>
+
+    <p class="paragraph">
+      A box represents one measure (commonly 4 beats), which can contain one or
+      more chords. The space a chord gets inside a box indicates the number of
+      beats it has to be played; a full box is 4 beats, half a box is 2 beats and
+      quarter a box 1 beat:
+    </p>
+
+    <div class="how-to-read-measure-boxes">
+      {{measure-box beatSchema='4' chords=beatsMeasure_4}}
+      {{measure-box beatSchema='2-2' chords=beatsMeasure_2_2}}
+      {{measure-box beatSchema='2-1-1' chords=beatsMeasure_2_1_1}}
+      {{measure-box beatSchema='1-1-2' chords=beatsMeasure_1_1_2}}
+      {{measure-box beatSchema='1-1-1-1' chords=beatsMeasure_1_1_1_1}}
+    </div>
+
+    <p class="paragraph">The order in which the chords should be played is as follows:</p>
+
+    <div class="how-to-read-measure-boxes">
+      {{measure-box beatSchema='4' chords=orderMeasure_4}}
+      {{measure-box beatSchema='2-2' chords=orderMeasure_2_2}}
+      {{measure-box beatSchema='2-1-1' chords=orderMeasure_2_1_1}}
+      {{measure-box beatSchema='1-1-2' chords=orderMeasure_1_1_2}}
+      {{measure-box beatSchema='1-1-1-1' chords=orderMeasure_1_1_1_1}}
+    </div>
+
+  </section>
+
+  <section>
+
+    <h3 class="heading3">Repetition</h3>
+
+    <p class="paragraph">
+      A box containing a percent sign means the previous measure should be repeated:
+    </p>
+
+    <div class="how-to-read-measure-boxes how-to-read-measure-boxes-repetition">
+      {{measure-box beatSchema='4' chords=repititionMeasureChord}}
+      {{measure-box beatSchema='4' chords=repititionMeasureRepitionSign}}
+    </div>
+
+  </section>
+
+  <section>
+
+    <h3 class="heading3">Rests</h3>
+
+    <p class="paragraph">
+      When no chords should be played, the box indicates a rest:
+    </p>
+
+    <div class="how-to-read-measure-boxes">
+      {{measure-box beatSchema='4' chords=restMeasureChord}}
+    </div>
+
+  </section>
+
+  <section>
+
+    <h3 class="heading3">Chords</h3>
+
+    <p class="paragraph">
+      The chords are written with their name and symbol. For a list of what
+      which symbol means see the chord symbol list.
+    </p>
+
+  </section>
+
+  <section>
+
+    <h3 class="heading3">Alternative bass note</h3>
+
+    <p class="paragraph">
+      A chord can have an alternative bass note. Instead of playing the root
+      note as lowest tone in the chord, you play an alternative note. In this
+      case the chord name and symbol will be followed by a slash ( / ) and the
+      alternative bass note. For example, this is a E7 chord with a B as the
+      bass note:
+    </p>
+
+    <div class="how-to-read-measure-boxes">
+      {{measure-box beatSchema='4' chords=alternativeBassNoteMeasureChord}}
+    </div>
+
+  </section>
+
+</div>

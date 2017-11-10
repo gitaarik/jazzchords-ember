@@ -70,32 +70,36 @@ test("find 2 correct matches", function(assert) {
 
 });
 
-test('result links to chart page and closes results pane', function(assert) {
+test(
+  'when clicking on a result, it transitions ' +
+  'to the chart page and closes results pane',
+  function(assert) {
 
-  const chart = server.create('chart', {title: "All Of Me"});
+    const chart = server.create('chart', {title: "All Of Me"});
 
-  visit('/');
-  fillIn('.chart-search-input', "all of");
-  triggerEvent('.chart-search-input', 'keyup');
-
-  andThen(function() {
-
-    assert.equal(currentPath(), 'index');
-    click(
-      '.chart-search-results ' +
-      '.chart-search-result:first-child ' +
-      '.chart-search-result-link'
-    );
+    visit('/');
+    fillIn('.chart-search-input', "all of");
+    triggerEvent('.chart-search-input', 'keyup');
 
     andThen(function() {
-      assert.equal(currentPath(), 'charts.chart');
-      assert.equal(currentURL(), '/charts/' + chart.id);
-      assert.notOk(find('.chart-search-results').length);
+
+      assert.equal(currentPath(), 'index');
+      click(
+        '.chart-search-results ' +
+        '.chart-search-result:first-child ' +
+        '.chart-search-result-link'
+      );
+
+      andThen(function() {
+        assert.equal(currentPath(), 'charts.chart');
+        assert.equal(currentURL(), '/charts/' + chart.id);
+        assert.notOk(find('.chart-search-results').length);
+      });
+
     });
 
-  });
-
-});
+  }
+);
 
 test("when there's only one result, it is automatically focussed", function(assert) {
 

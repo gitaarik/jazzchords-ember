@@ -66,13 +66,19 @@ export default Ember.Component.extend({
   },
 
   actions: {
+
     openSubMenu() {
         if (this.get('subMenuOpen')) {
           this.closeSubMenu();
         } else {
           this.openSubMenu();
         }
+    },
+
+    subMenuItemClicked() {
+      this.closeSubMenu();
     }
+
   }
 
 });

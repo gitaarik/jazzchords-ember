@@ -11,6 +11,10 @@ Router.map(function() {
     this.route('create');
     this.route('chart', { path: ':id' });
   });
+
+  this.route('help', function() {
+    this.route('how-to-read');
+  });
 });
 
 export default Router;

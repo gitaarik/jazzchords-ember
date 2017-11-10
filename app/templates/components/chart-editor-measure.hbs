@@ -1,4 +1,7 @@
-<div class="measure-box" onclick={{action "measureBoxClicked"}}>
+<div
+  class="measure-box measure-box-beatschema-{{measure.beatSchema}}"
+  onclick={{action "measureBoxClicked"}}
+>
 
   {{#if (eq measure.beatSchema '4')}}
     {{#each measure.chords as |chord|}}
@@ -7,7 +10,7 @@
   {{/if}}
 
   {{#if (eq measure.beatSchema '2-2')}}
-    <canvas class="measure-box-canvas" width="100" height="100"></canvas>
+    {{measure-box-canvas beatSchema='2-2'}}
     {{#each measure.chords as |chord|}}
       {{chart-editor-chord chord=chord size='medium'}}
     {{/each}}
@@ -29,7 +32,7 @@
       </div>
 
       <div class="beat-schema-preview beat-schema-preview-2-2" onclick={{action "changeBeatSchema" "2-2"}}>
-        <canvas class="beat-schema-preview-2-2-canvas" width="50" height="50"></canvas>
+        {{measure-box-canvas size=50 beatSchema='2-2'}}
         <div class="beat-schema-preview-2-2-chord-1">1</div>
         <div class="beat-schema-preview-2-2-chord-2">2</div>
       </div>

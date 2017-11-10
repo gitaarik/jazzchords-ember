@@ -13,7 +13,7 @@
         {{#each subMenuItems as |subMenuItem|}}
 
           <div class="main-menu-item-submenu-item">
-            {{#link-to url class="main-menu-item-submenu-text"}}
+            {{#link-to subMenuItem.route class="main-menu-item-submenu-text" click=(action 'subMenuItemClicked')}}
               {{subMenuItem.text}}
             {{/link-to}}
           </div>

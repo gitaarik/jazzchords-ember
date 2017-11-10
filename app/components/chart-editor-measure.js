@@ -6,70 +6,8 @@ export default Ember.Component.extend({
 
   store: Ember.inject.service(),
 
-  didRender() {
-    this.drawDivisionLines();
-  },
-
   willDestroy() {
     this.removePopoutCloseListeners();
-  },
-
-  drawDivisionLines() {
-
-    this.drawMeasureBoxDivisionLines();
-
-    if (this.get('popoutOpen')) {
-      this.drawBeatSchemaPreviewDivisionLines();
-    }
-
-  },
-
-  drawMeasureBoxDivisionLines() {
-
-    const canvasEl = this.$('.measure-box-canvas');
-
-    if (!canvasEl.length) {
-      return;
-    }
-
-    canvasEl.width = 100;
-    canvasEl.height = 100;
-
-    const context = canvasEl[0].getContext('2d');
-    context.lineWidth = 1;
-
-    if (this.get('measure').get('beatSchema') === '2-2') {
-      this.drawMeasureBox2_2DivisionLines(context);
-    }
-
-  },
-
-  drawMeasureBox2_2DivisionLines(context) {
-    context.beginPath();
-    context.moveTo(0, 100);
-    context.lineTo(100, 0);
-    context.stroke();
-  },
-
-  drawBeatSchemaPreviewDivisionLines() {
-    this.drawBeatSchemaPreview2_2DivisionLines();
-  },
-
-  drawBeatSchemaPreview2_2DivisionLines() {
-
-    const canvasEl = this.$('.beat-schema-preview-2-2-canvas');
-
-    canvasEl.width = 50;
-    canvasEl.height = 50;
-
-    const context = canvasEl[0].getContext('2d');
-    context.lineWidth = 1;
-
-    context.beginPath();
-    context.moveTo(0, 50);
-    context.lineTo(50, 0);
-    context.stroke();
-
   },
 
   addPopoutCloseListeners() {
