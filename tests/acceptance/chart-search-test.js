@@ -201,3 +201,187 @@ test(
 
   }
 );
+
+test("able to focus search results with the mouse", function(assert) {
+
+  server.create('chart', {title: "All Of Me"});
+  server.create('chart', {title: "All Of You"});
+  server.create('chart', {title: "All Of Her"});
+  server.create('chart', {title: "All Of Him"});
+
+  visit('/');
+  fillIn('.chart-search-input', "all");
+  triggerEvent('.chart-search-input', 'keyup');
+
+  function mouseMove(index) {
+    return triggerEvent(
+      '.chart-search-results .chart-search-result:nth-child(' + index + ')',
+      'mousemove'
+    );
+  }
+
+  function checkResultFocus(index) {
+    assert.ok(
+      find(
+        '.chart-search-results ' +
+        '.chart-search-result:nth-child(' + index + ')' +
+        '.chart-search-result-focussed'
+      ).length
+    );
+  }
+
+  andThen(function() {
+    mouseMove(2).then(function() {
+      checkResultFocus(2);
+    });
+  });
+
+});
+
+test("able to navigate between search result with arrow keys", function(assert) {
+
+  server.create('chart', {title: "All Of Me"});
+  server.create('chart', {title: "All Of You"});
+  server.create('chart', {title: "All Of Her"});
+  server.create('chart', {title: "All Of Him"});
+
+  visit('/');
+  fillIn('.chart-search-input', "all");
+  triggerEvent('.chart-search-input', 'keyup');
+
+  function checkResultFocus(index) {
+    assert.ok(
+      find(
+        '.chart-search-results ' +
+        '.chart-search-result:nth-child(' + index + ')' +
+        '.chart-search-result-focussed'
+      ).length
+    );
+  }
+
+  function keyDown() {
+    return keyEvent('.chart-search-input', 'keyup', 40);
+  }
+
+  function keyUp() {
+    return keyEvent('.chart-search-input', 'keyup', 38);
+  }
+
+  andThen(function() {
+    keyDown().then(function() {
+      checkResultFocus(1);
+      keyDown().then(function() {
+        checkResultFocus(2);
+        keyDown().then(function() {
+          checkResultFocus(3);
+          keyUp().then(function() {
+            checkResultFocus(2);
+            keyUp().then(function() {
+              checkResultFocus(1);
+              keyUp().then(function() {
+                checkResultFocus(4);
+              });
+            });
+          });
+        });
+      });
+    });
+  });
+
+});
+
+test(
+  "after navigating search results and closing the results popup and " +
+  "then pressing arrow buttons, the results popup opens up again and " +
+  "the focus goes on where it was left",
+  function(assert) {
+
+    server.create('chart', {title: "All Of Me"});
+    server.create('chart', {title: "All Of You"});
+    server.create('chart', {title: "All Of Her"});
+    server.create('chart', {title: "All Of Him"});
+
+    visit('/');
+    fillIn('.chart-search-input', "all");
+    triggerEvent('.chart-search-input', 'keyup');
+
+    function checkResultFocus(index) {
+      assert.ok(
+        find(
+          '.chart-search-results ' +
+          '.chart-search-result:nth-child(' + index + ')' +
+          '.chart-search-result-focussed'
+        ).length
+      );
+    }
+
+    function keyDown() {
+      return keyEvent('.chart-search-input', 'keyup', 40);
+    }
+
+    andThen(function() {
+      keyDown().then(function() {
+        checkResultFocus(1);
+        keyDown().then(function() {
+          checkResultFocus(2);
+          keyEvent('.chart-search-input-container', 'keypress', 27).then(function() {
+            assert.notOk(find('.chart-search-results').length);
+            keyDown().then(function() {
+              assert.ok(find('.chart-search-results').length);
+              checkResultFocus(2);
+            });
+          });
+        });
+      });
+    });
+
+  }
+);
+
+test(
+  "when first focussing a chart with the arrow keys and then with " +
+  "the mouse, the focussed result from the arrow keys goes away",
+  function(assert) {
+
+    server.create('chart', {title: "All Of Me"});
+    server.create('chart', {title: "All Of You"});
+    server.create('chart', {title: "All Of Her"});
+    server.create('chart', {title: "All Of Him"});
+
+    visit('/');
+    fillIn('.chart-search-input', "all");
+    triggerEvent('.chart-search-input', 'keyup');
+
+    function hasFocus(index) {
+      return find(
+        '.chart-search-results ' +
+        '.chart-search-result:nth-child(' + index + ')' +
+        '.chart-search-result-focussed'
+      ).length;
+    }
+
+    function keyDown() {
+      return keyEvent('.chart-search-input', 'keyup', 40);
+    }
+
+    andThen(function() {
+      keyDown().then(function() {
+        assert.ok(hasFocus(1));
+        keyDown().then(function() {
+
+          assert.ok(hasFocus(2));
+
+          triggerEvent(
+            '.chart-search-results .chart-search-result:nth-child(4)',
+            'mousemove'
+          ).then(function() {
+            assert.notOk(hasFocus(2));
+            assert.ok(hasFocus(4));
+          });
+
+        });
+      });
+    });
+
+  }
+);

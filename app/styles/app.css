@@ -219,8 +219,7 @@ h1 {
   text-overflow: ellipsis;
 }
 
-.chart-search-result-focussed .chart-search-result-link,
-.chart-search-result-link:hover {
+.chart-search-result-focussed .chart-search-result-link {
   background: #165CE0;
   color: #FFF;
 }

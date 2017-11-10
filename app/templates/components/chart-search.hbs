@@ -7,7 +7,7 @@
     placeholder="Search charts"
     autocomplete="off"
     value=searchTerm
-    key-up="updateSearchTerm"
+    key-up="inputKeyUp"
     enter="selectFocussedChart"
     focus-in="showResults"}}
 
@@ -32,7 +32,10 @@
     <ul class="chart-search-results {{if loading "chart-search-results-loading"}}">
       {{#if searchResults}}
         {{#each searchResults as |chart index|}}
-          <li class="chart-search-result {{if (eq focussedResultIndex index) "chart-search-result-focussed"}}">
+          <li
+            class="chart-search-result {{if (eq focussedResultIndex index) "chart-search-result-focussed"}}"
+            {{action "focusResult" index on="mouseMove"}}
+          >
             {{#link-to 'charts.chart' chart.id class="chart-search-result-link" click=(action 'chartLinkClicked')}}
               {{chart.title}}
             {{/link-to}}

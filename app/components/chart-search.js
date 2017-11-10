@@ -73,6 +73,12 @@ export default Ember.Component.extend({
     document.removeEventListener('keypress', this.closeResultsOnEsc);
   },
 
+  updateSearchTerm(value) {
+    if (value !== this.lastSearchTerm) {
+      this.search(value);
+    }
+  },
+
   search(value) {
 
     this.setProperties({
@@ -101,16 +107,69 @@ export default Ember.Component.extend({
     });
   },
 
+  moveFocusDown() {
+    this.moveFocus(1);
+  },
+
+  moveFocusUp() {
+    this.moveFocus(-1);
+  },
+
+  moveFocus(direction) {
+
+    if (!this.get('showResults')) {
+      this.set('showResults', true);
+      return;
+    }
+
+    const currentFocus = this.get('focussedResultIndex');
+    const totalResults = this.get('searchResults').get('length');
+    let newFocus;
+
+    if (currentFocus === null) {
+
+      if (direction > 0) {
+        newFocus = -1 + direction;
+      } else {
+        newFocus = totalResults + direction;
+      }
+
+    } else {
+
+      newFocus = currentFocus + direction;
+
+      if (newFocus === totalResults) {
+        newFocus = 0;
+      } else if (newFocus < 0) {
+        newFocus = totalResults - 1;
+      }
+
+    }
+
+    this.set('focussedResultIndex', newFocus);
+
+  },
+
   closeResults() {
     this.set('showResults', false);
   },
 
   actions: {
 
-    updateSearchTerm(value) {
-      if (value !== this.lastSearchTerm) {
-        this.search(value);
+    inputKeyUp(value, event) {
+
+      if (event.keyCode === 40) { // down arrow
+        this.moveFocusDown();
+      } else if (event.keyCode === 38) { // up arrow
+        this.moveFocusUp();
+      } else {
+        this.updateSearchTerm(value);
       }
+
+    },
+
+    focusResult(resultIndex) {
+      this.set('focussedResultIndex', resultIndex);
     },
 
     selectFocussedChart() {
