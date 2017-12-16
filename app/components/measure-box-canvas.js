@@ -25,6 +25,8 @@ export default Ember.Component.extend({
     const canvasEl = this.get('element');
     const context = canvasEl.getContext('2d');
 
+    context.clearRect(0, 0, this.get('width'), this.get('height'));
+
     switch (this.get('beatSchema')) {
 
         case '2-2':
@@ -68,28 +70,28 @@ export default Ember.Component.extend({
 
   drawLeftBottomToRightTopLine(context) {
     context.beginPath();
-    context.moveTo(0, this.get('size'));
-    context.lineTo(this.get('size'), 0);
+    context.moveTo(0, this.get('width'));
+    context.lineTo(this.get('height'), 0);
     context.stroke();
   },
 
   drawTopLeftToBottomRightLine(context) {
     context.beginPath();
     context.moveTo(0, 0);
-    context.lineTo(this.get('size'), this.get('size'));
+    context.lineTo(this.get('width'), this.get('height'));
     context.stroke();
   },
 
   drawMiddleToRightBottomLine(context) {
     context.beginPath();
-    context.moveTo(this.get('size') / 2, this.get('size') / 2);
-    context.lineTo(this.get('size'), this.get('size'));
+    context.moveTo(this.get('width') / 2, this.get('height') / 2);
+    context.lineTo(this.get('width'), this.get('height'));
     context.stroke();
   },
 
   drawMiddleToLeftTopLine(context) {
     context.beginPath();
-    context.moveTo(this.get('size') / 2, this.get('size') / 2);
+    context.moveTo(this.get('width') / 2, this.get('height') / 2);
     context.lineTo(0, 0);
     context.stroke();
   }

@@ -108,3 +108,19 @@ test('change measure beatSchema from 2-2 to 4', function(assert) {
   assert.equal(this.get('measureWith2Chords').get('chords').get('length'), 1);
 
 });
+
+test('change measure beatSchema from 4 to 2-1-1', function(assert) {
+
+  this.render(hbs`{{chart-editor-measure measure=measure}}`);
+
+  assert.equal(this.get('measure').get('beatSchema'), '4');
+
+  this.$('.line-measure .measure-box').click();
+  this.$('.line-measure .measure-edit-popout .beat-schema-previews .beat-schema-preview-2-1-1').click();
+
+  assert.equal(this.get('measure').get('beatSchema'), '2-1-1');
+  assert.equal(this.get('measure').get('chords').objectAt('0').get('name'), 'D');
+  assert.equal(this.get('measure').get('chords').objectAt('1').get('name'), 'D');
+  assert.equal(this.get('measure').get('chords').objectAt('2').get('name'), 'D');
+
+});

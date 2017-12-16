@@ -2,18 +2,43 @@
   class="measure-box measure-box-beatschema-{{measure.beatSchema}}"
   onclick={{action "measureBoxClicked"}}
 >
+    
+  {{measure-box-canvas beatSchema=measure.beatSchema}}
 
-  {{#if (eq measure.beatSchema '4')}}
-    {{#each measure.chords as |chord|}}
-      {{chart-editor-chord chord=chord size='big'}}
-    {{/each}}
-  {{/if}}
+  {{#if measure.chords}}
 
-  {{#if (eq measure.beatSchema '2-2')}}
-    {{measure-box-canvas beatSchema='2-2'}}
-    {{#each measure.chords as |chord|}}
-      {{chart-editor-chord chord=chord size='medium'}}
-    {{/each}}
+    <div class="measure-box-chords">
+
+      {{#if (eq measure.beatSchema '4')}}
+        {{chart-editor-chord chord=chord1 size='big'}}
+      {{/if}}
+
+      {{#if (eq measure.beatSchema '2-2')}}
+        {{chart-editor-chord chord=chord1 size='medium'}}
+        {{chart-editor-chord chord=chord2 size='medium'}}
+      {{/if}}
+
+      {{#if (eq measure.beatSchema '2-1-1')}}
+        {{chart-editor-chord chord=chord1 size='medium'}}
+        {{chart-editor-chord chord=chord2 size='small'}}
+        {{chart-editor-chord chord=chord3 size='small'}}
+      {{/if}}
+
+      {{#if (eq measure.beatSchema '1-1-2')}}
+        {{chart-editor-chord chord=chord1 size='small'}}
+        {{chart-editor-chord chord=chord2 size='small'}}
+        {{chart-editor-chord chord=chord3 size='medium'}}
+      {{/if}}
+
+      {{#if (eq measure.beatSchema '1-1-1-1')}}
+        {{chart-editor-chord chord=chord1 size='small'}}
+        {{chart-editor-chord chord=chord2 size='small'}}
+        {{chart-editor-chord chord=chord3 size='small'}}
+        {{chart-editor-chord chord=chord4 size='small'}}
+      {{/if}}
+
+    </div>
+
   {{/if}}
 
 </div>
@@ -35,6 +60,28 @@
         {{measure-box-canvas size=50 beatSchema='2-2'}}
         <div class="beat-schema-preview-2-2-chord-1">1</div>
         <div class="beat-schema-preview-2-2-chord-2">2</div>
+      </div>
+
+      <div class="beat-schema-preview beat-schema-preview-2-1-1" onclick={{action "changeBeatSchema" "2-1-1"}}>
+        {{measure-box-canvas size=50 beatSchema='2-1-1'}}
+        <div class="beat-schema-preview-2-1-1-chord-1">1</div>
+        <div class="beat-schema-preview-2-1-1-chord-2">2</div>
+        <div class="beat-schema-preview-2-1-1-chord-3">3</div>
+      </div>
+
+      <div class="beat-schema-preview beat-schema-preview-1-1-2" onclick={{action "changeBeatSchema" "1-1-2"}}>
+        {{measure-box-canvas size=50 beatSchema='1-1-2'}}
+        <div class="beat-schema-preview-1-1-2-chord-1">1</div>
+        <div class="beat-schema-preview-1-1-2-chord-2">2</div>
+        <div class="beat-schema-preview-1-1-2-chord-3">3</div>
+      </div>
+
+      <div class="beat-schema-preview beat-schema-preview-1-1-1-1" onclick={{action "changeBeatSchema" "1-1-1-1"}}>
+        {{measure-box-canvas size=50 beatSchema='1-1-1-1'}}
+        <div class="beat-schema-preview-1-1-1-1-chord-1">1</div>
+        <div class="beat-schema-preview-1-1-1-1-chord-2">2</div>
+        <div class="beat-schema-preview-1-1-1-1-chord-3">3</div>
+        <div class="beat-schema-preview-1-1-1-1-chord-4">4</div>
       </div>
 
     </div>
