@@ -14,6 +14,7 @@ Router.map(function() {
 
   this.route('help', function() {
     this.route('how-to-read');
+    this.route('chord-symbols');
   });
 });
 

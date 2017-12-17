@@ -9,7 +9,8 @@ export default Ember.Component.extend({
       route: 'help.how-to-read'
     },
     {
-      text: 'Chord symbols'
+      text: 'Chord symbols',
+      route: 'help.chord-symbols'
     }
   ]
 });

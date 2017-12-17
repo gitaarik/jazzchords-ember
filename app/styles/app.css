@@ -364,6 +364,15 @@ button:hover {
   border-right: 0;
 }
 
+.chord-symbols-table tr th {
+  text-align: left;
+}
+
+.chord-symbols-table tr th,
+.chord-symbols-table tr td {
+  padding: 2px 50px 2px 0;
+}
+
 .chart-list {
   list-style: none;
   padding: 0;
