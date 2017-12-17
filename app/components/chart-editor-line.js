@@ -6,6 +6,10 @@ export default Ember.Component.extend({
 
   store: Ember.inject.service(),
 
+  showAddButton: Ember.computed('line.measures.length', function() {
+    return this.line.get('measures').get('length') < 8;
+  }),
+
   actions: {
     addMeasure() {
       const store = this.get('store');

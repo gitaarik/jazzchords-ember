@@ -16,8 +16,20 @@ moduleForComponent('chart-editor-line', 'Integration | Component | chart editor 
     this.store.createRecord('chord', { measure: measure1, name: 'D' });
     this.store.createRecord('chord', { measure: measure2, name: 'F7' });
 
+    const section2 = this.store.createRecord('section');
+    const fullLine = this.store.createRecord('line', { section2 });
+    this.store.createRecord('measure', { line: fullLine, beatSchema: '4' });
+    this.store.createRecord('measure', { line: fullLine, beatSchema: '4' });
+    this.store.createRecord('measure', { line: fullLine, beatSchema: '4' });
+    this.store.createRecord('measure', { line: fullLine, beatSchema: '4' });
+    this.store.createRecord('measure', { line: fullLine, beatSchema: '4' });
+    this.store.createRecord('measure', { line: fullLine, beatSchema: '4' });
+    this.store.createRecord('measure', { line: fullLine, beatSchema: '4' });
+    this.store.createRecord('measure', { line: fullLine, beatSchema: '4' });
+
     this.set('line', line);
     this.set('measure1', measure1);
+    this.set('fullLine', fullLine);
 
   }
 
@@ -67,4 +79,9 @@ test('cannot remove last measure of only line', function(assert) {
   this.$('.section-line .line-measure:nth(0) .measure-box').click();
   assert.notOk(this.$('.section-line .line-measure:nth(0) .measure-edit-popout .remove-measure-button').length);
 
+});
+
+test("doesn't have add measure button when there are 8 measures", function(assert) {
+  this.render(hbs`{{chart-editor-line line=fullLine}}`);
+  assert.notOk(this.$('.measure-add-button').length);
 });

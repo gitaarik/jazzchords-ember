@@ -1,4 +1,7 @@
 {{#each line.measures as |measure|}}
   {{chart-editor-measure measure=measure}}
 {{/each}}
-<a {{action 'addMeasure'}} class="measure-add-button">+</a>
+
+{{#if showAddButton}}
+  <a {{action 'addMeasure'}} class="measure-add-button">+</a>
+{{/if}}
