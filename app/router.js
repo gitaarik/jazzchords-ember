@@ -16,6 +16,10 @@ Router.map(function() {
     this.route('how-to-read');
     this.route('chord-symbols');
   });
+
+  this.route('about', function() {
+    this.route('about');
+  });
 });
 
 export default Router;
