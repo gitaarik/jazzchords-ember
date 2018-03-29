@@ -645,6 +645,7 @@ button:hover {
   margin: 0;
   border: none;
   width: 100%;
+  background: transparent;
 }
 
 .chord-input {
